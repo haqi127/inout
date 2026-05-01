@@ -3,146 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Order Form</title>
+    <title>Modern Order Form</title>
+    <!-- Import Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-green: #2ecc71;
-            --primary-yellow: #f1c40f;
-            --dark-green: #27ae60;
-            --bg-gradient: linear-gradient(135deg, #2ecc71 0%, #f1c40f 100%);
+            --accent-green: #27ae60;
+            --accent-yellow: #f1c40f;
+            --soft-bg: #fdfdfd;
+            --text-main: #1a1a1a;
+            --text-muted: #7f8c8d;
+            --border-color: #f1f1f1;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-gradient);
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--soft-bg);
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             margin: 0;
             padding: 20px;
         }
 
         .form-card {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: #ffffff;
             width: 100%;
-            max-width: 450px;
-            border-bottom: 5px solid var(--primary-yellow);
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
         }
 
-        .form-card h2 {
+        h2 {
+            margin-top: 0;
+            font-size: 22px;
+            font-weight: 700;
             text-align: center;
-            color: var(--dark-green);
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 24px;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-            color: #444;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            outline: none;
-            transition: all 0.3s ease;
+            padding: 14px 18px;
+            border: 1.5px solid #eeeeee;
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            background: #fcfcfc;
             box-sizing: border-box;
-            font-size: 0.95rem;
-            background-color: #fafafa;
+            color: var(--text-main);
         }
 
         input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-green);
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+            outline: none;
+            border-color: var(--accent-green);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.08);
         }
 
         .btn-submit {
             width: 100%;
-            padding: 15px;
-            background: var(--dark-green);
+            padding: 16px;
+            background-color: var(--text-main); /* Hitam agar lebih kontras & clean */
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: bold;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             margin-top: 10px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
         }
 
         .btn-submit:hover {
-            background: var(--primary-yellow);
-            color: #333;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.2);
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            .form-card { padding: 20px; }
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        ::placeholder {
+            color: #bdc3c7;
+        }
+
+        /* Border accent di paling atas */
+        .top-line {
+            height: 4px;
+            width: 60px;
+            background: var(--accent-yellow);
+            margin: 0 auto 20px auto;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="form-card">
+    <div class="top-line"></div>
     <h2>Order Form</h2>
-    <form action="send.php" method="POST">
-        
+    <p class="subtitle">Isi data pesanan dengan lengkap</p>
+    
+    <form id="orderForm">
         <div class="form-group">
-            <label>Tujuan Admin</label>
-            <select name="admin_tujuan">
-                <option value="admin1">Admin Utama (Hijau)</option>
-                <option value="admin2">Admin Cadangan (Kuning)</option>
+            <label>Admin Tujuan</label>
+            <select id="admin_tujuan">
+                <option value="admin1">Rendi</option>
+                <option value="admin2">Muaz</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Nama Penerima</label>
-            <input type="text" name="penerima" placeholder="Nama lengkap penerima" required>
+            <label>Penerima</label>
+            <input type="text" id="penerima" placeholder="Nama lengkap" required>
         </div>
 
         <div class="form-group">
-            <label>Nama Pengirim</label>
-            <input type="text" name="pengirim" placeholder="Nama lengkap pengirim" required>
+            <label>Pengirim</label>
+            <input type="text" id="pengirim" placeholder="Nama pengirim" required>
         </div>
 
         <div class="form-group">
             <label>Nomor HP</label>
-            <input type="tel" name="hp" placeholder="08xxxxxxxxxx" required>
+            <input type="tel" id="hp" placeholder="08..." required>
         </div>
 
         <div class="form-group">
-            <label>Alamat Pengiriman</label>
-            <textarea name="alamat" rows="2" placeholder="Tulis alamat lengkap..." required></textarea>
+            <label>Alamat</label>
+            <textarea id="alamat" rows="2" placeholder="Alamat lengkap tujuan..." required></textarea>
         </div>
 
         <div class="form-group">
-            <label>Detail Pesanan</label>
-            <textarea name="pesanan" rows="3" placeholder="Apa yang ingin dibeli?" required></textarea>
+            <label>Pesanan</label>
+            <textarea id="pesanan" rows="3" placeholder="Detail barang..." required></textarea>
         </div>
 
-        <button type="submit" class="btn-submit">Kirim ke Telegram</button>
+        <button type="submit" class="btn-submit" id="btnText">Kirim Pesanan</button>
     </form>
 </div>
+
+<script>
+    // Script tetap sama dengan sebelumnya
+    const token = "8703060544:AAHwZ_Kon_9dflixAnIDA_Wlr9ittFh3KV0"; 
+    const adminID1 = "5132185030"; 
+    const adminID2 = "7447271812"; 
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('btnText');
+        const originalText = btn.innerText;
+        btn.innerText = "Mengirim...";
+        btn.disabled = true;
+
+        const data = {
+            tujuan: document.getElementById('admin_tujuan').value,
+            penerima: document.getElementById('penerima').value,
+            pengirim: document.getElementById('pengirim').value,
+            hp: document.getElementById('hp').value,
+            alamat: document.getElementById('alamat').value,
+            pesanan: document.getElementById('pesanan').value
+        };
+
+        const targetID = (data.tujuan === "admin1") ? adminID1 : adminID2;
+
+        const pesan = `📦 *PESANAN BARU*\n\n` +
+                      `👤 Penerima: *${data.penerima}*\n\n` +
+                      `📤 Pengirim: ${data.pengirim}\n\n` +
+                      `📞 No HP: ${data.hp}\n` +
+                      `📍 Alamat: ${data.alamat}\n\n` +
+                      `🛒 *Pesanan:*\n*${data.pesanan}*`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: targetID,
+                text: pesan,
+                parse_mode: 'Markdown'
+            })
+        })
+        .then(res => {
+            if (res.ok) {
+                alert("Sukses! Pesanan telah diteruskan.");
+                document.getElementById('orderForm').reset();
+            } else {
+                alert("Gagal mengirim pesan.");
+            }
+        })
+        .catch(() => alert("Koneksi bermasalah."))
+        .finally(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    });
+</script>
 
 </body>
 </html>
